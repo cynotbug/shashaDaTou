@@ -6,6 +6,7 @@ import path from "path";
 export default defineConfig({
   plugins: [vue()],
   base: "/5114/",
+  publicPath: "./",
   resolve: {
     alias: [
       {
@@ -25,8 +26,5 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, "")
       }
     }
-  },
-  build: {
-    assetsPublicPath: "./"
   }
 });
