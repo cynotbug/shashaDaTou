@@ -12,8 +12,12 @@ export default defineConfig({
     //   targets: ["defaults", "not IE 11"]
     // })
   ],
-  base: "./",
-  // publicPath: "./",
+  // https://doc.smart.com/activity/sit/xxx/doc/index.html
+  // 配置为
+  // base:'/activity/sit/xxx/doc/'
+  // https://cynotbug.github.io/shashaDaTou/dist/#/shasha/home
+  //   base: "./",
+  //   // publicPath: "./",
 
   build: {
     outDir: "docs" // 打包文件的输出目录
