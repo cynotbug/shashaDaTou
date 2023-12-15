@@ -1,1 +1,0 @@
-System.register(["./index-legacy-fd295a73.js"],(function(t,e){"use strict";var r;return{setters:[t=>{r=t.C}],execute:function(){t({a:function(t){return r.get("/ctp/property/number",t)},b:function(t){return r.post("/ctp/product/page",t)},c:function(t){return r.get("/ctp/product/detail",t)},g:function(t){return r.get("/ctp/product/category",t)}})}}}));

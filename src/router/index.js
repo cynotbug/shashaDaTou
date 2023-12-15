@@ -1,5 +1,5 @@
 import "vue-router";
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import Layout from "@/components/layout/index1.vue";
 import NotFound from "@/views/notFound/index.vue";
 import Authorize from "../views/authorize/index.vue";
@@ -147,7 +147,7 @@ const routes = [
 ];
 
 export default createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
   // base: "/ctp/"
   // scrollBehavior(to, from, savedPosition) {
