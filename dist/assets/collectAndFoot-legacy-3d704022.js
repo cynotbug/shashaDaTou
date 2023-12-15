@@ -1,1 +1,0 @@
-System.register(["./index-legacy-fd295a73.js"],(function(e,t){"use strict";var r;return{setters:[e=>{r=e.C}],execute:function(){e({a:function(e){return r.post("/user/trace/enterprise/page",e)},c:function(e){return r.post("/user/trace/collect/page",e)},d:function(e){return r.post("/user/trace/delete",e)},t:function(e){return r.post("/user/trace/tract/page",e)}})}}}));

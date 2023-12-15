@@ -1,1 +1,0 @@
-import{C as e}from"./index-d3737174.js";function c(t){return e.post("/user/trace/delete",t)}function s(t){return e.post("/user/trace/tract/page",t)}function a(t){return e.post("/user/trace/collect/page",t)}function o(t){return e.post("/user/trace/enterprise/page",t)}export{o as a,a as c,c as d,s as t};
