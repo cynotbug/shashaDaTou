@@ -16,7 +16,7 @@ export default defineConfig({
   // 配置为
   // base:'/activity/sit/xxx/doc/'
   // https://cynotbug.github.io/shashaDaTou/dist/#/shasha/home
-  //   base: "./",
+  base: "./",
   //   // publicPath: "./",
 
   build: {
