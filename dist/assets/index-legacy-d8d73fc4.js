@@ -1,0 +1,1 @@
+System.register(["./index-legacy-fd295a73.js"],(function(e,t){"use strict";var r,n,u,c,i;return{setters:[e=>{r=e._,n=e.r,u=e.o,c=e.c,i=e.a}],execute:function(){e("default",r({},[["render",function(e,t){const r=n("router-view");return u(),c("div",null,[i(r)])}]]))}}}));
