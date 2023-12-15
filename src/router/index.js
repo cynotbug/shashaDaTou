@@ -147,7 +147,7 @@ const routes = [
 ];
 
 export default createRouter({
-  history: createWebHistory("/5114/"),
+  history: createWebHistory(),
   routes
   // base: "/ctp/"
   // scrollBehavior(to, from, savedPosition) {
