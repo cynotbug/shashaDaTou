@@ -1,0 +1,1 @@
+import{C as r}from"./index-fda95e8c.js";function c(t){return r.get("/ctp/product/category",t)}function o(t){return r.post("/ctp/product/page",t)}function u(t){return r.get("/ctp/product/detail",t)}function p(t){return r.get("/ctp/property/number",t)}export{p as a,o as b,u as c,c as g};
