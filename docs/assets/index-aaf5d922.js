@@ -1,0 +1,1 @@
+import{_ as o,f as n,o as r,c as t,h as c}from"./index-da407c29.js";const s={};function _(a,f){const e=n("router-view");return r(),t("div",null,[c(e)])}const l=o(s,[["render",_]]);export{l as default};
