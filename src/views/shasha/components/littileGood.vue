@@ -1,16 +1,22 @@
 <template>
   <div class="littileGood">
-    <div><img src="../../../assets/img/shasha.jpg" class="shasha" /></div>
+    <div><img :src="getshashaImg()" class="shasha" /></div>
     <div class="heart">
       <Heart />
     </div>
 
-    <div><img src="../../../assets/img/datou.jpg" class="datou" /></div>
+    <div><img :src="getdatouImg()" class="datou" /></div>
   </div>
 </template>
 
 <script setup>
 import Heart from "./heart.vue";
+const getshashaImg = () => {
+  return new URL(`@/assets/img/shasha.jpg`, import.meta.url).href;
+};
+const getdatouImg = () => {
+  return new URL(`@/assets/img/datou.jpg`, import.meta.url).href;
+};
 </script>
 
 <style lang="scss" scoped>

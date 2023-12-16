@@ -249,7 +249,7 @@
       <littileGood />
       <h1 class="material-title">2017-2023莎头混双之路</h1>
       <div class="material-dg" @click="onCLick">
-        <img src="../../assets/img/dg.jpg" />
+        <img :src="getdgImg()" />
       </div>
     </div>
     <div v-else>
@@ -470,7 +470,9 @@ const handelvedioPlay = (item) => {
 const handelvedioback = (item) => {
   item.isPlay = false;
 };
-
+const getdgImg = () => {
+  return new URL(`@/assets/img/dg.jpg`, import.meta.url).href;
+};
 const getbannerVideo = () => {
   return new URL(`@/assets/img/balijiian.mp4`, import.meta.url).href;
 };
