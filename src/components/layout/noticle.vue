@@ -78,10 +78,11 @@ const runMarquee = () => {
   width: 100%;
   height: 21px;
   line-height: 21px;
-  font-size: 0.3rem;
+  font-size: 0.5rem;
   overflow: hidden;
   white-space: nowrap;
   background: red;
+  color: #fff;
 }
 
 #marquee1 {

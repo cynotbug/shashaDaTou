@@ -33,7 +33,7 @@
         </div>
       </div> -->
 
-      <div class="banner-container">
+      <div class="banner-container" v-if="!isLogin">
         <div class="banner-main" v-if="!isBanner">
           <div class="bofangicon" @click="handelPlayFn">
             <el-icon><VideoPlay /></el-icon>
@@ -74,44 +74,64 @@
           </div> -->
         </div>
       </div>
+      <div class="banner-container" v-else>
+        <div>
+          <EuropeMap />
+        </div>
+      </div>
 
       <div class="user-container">
         <div class="user-main">
           <div class="user-head">
             <div class="user-head-avatar">
               <img
+                v-if="!isLogin"
                 :src="getAvatarImageUrl()"
                 alt=""
                 style="width: 100%; height: 100%"
               />
+              <img
+                v-else
+                :src="getAvatarUrl()"
+                alt=""
+                style="width: 100%; height: 100%; border-radius: 50%"
+              />
             </div>
 
             <div class="user-head-name" v-if="isLogin">
-              <span style="margin-right: 6px">HI!</span>
-              <span>{{ userInfo.name }}</span>
+              <span style="margin-right: 6px">HI</span>
+              <span>莎头们</span>
             </div>
-
+            <div class="user-head-logout" v-if="isLogin" @click="logout">
+              <span>退出登录</span>
+            </div>
             <div class="user-head-name tourist" v-if="!isLogin">
               <span>登陆后可查看更多莎头详情</span>
             </div>
           </div>
 
-          <div class="user-menu" v-if="isLogin">
+          <div class="user-menu" style="margin-top: 5px" v-if="isLogin">
             <div class="user-menu-item" @click="toFavorites(0)">
-              <div class="user-menu-item-icon icon1"></div>
-              <div class="user-menu-item-name">收藏产品</div>
+              <!-- <div class="user-menu-item-icon icon1"></div> -->
+              <div
+                class="user-menu-item-name"
+                style="color: red; text-decoration: underline"
+              >
+                大头网站
+              </div>
             </div>
             <div class="user-menu-item" @click="toRecord">
-              <div class="user-menu-item-icon icon2"></div>
-              <div class="user-menu-item-name">我的足迹</div>
-            </div>
-            <div class="user-menu-item" @click="toFavorites(1)">
-              <div class="user-menu-item-icon icon3"></div>
-              <div class="user-menu-item-name">收藏供应商</div>
+              <!-- <div class="user-menu-item-icon icon2"></div> -->
+              <div
+                class="user-menu-item-name"
+                style="color: red; text-decoration: underline"
+              >
+                莎莎网站
+              </div>
             </div>
           </div>
 
-          <div class="user-menu-login" v-if="!isLogin">
+          <div class="user-menu-login" v-if="!isLogin" @click="login">
             <div class="user-menu-login-btn">登录</div>
           </div>
 
@@ -224,11 +244,20 @@
   </div>
 
   <div class="material-container">
-    <h1 class="material-title">莎头混双合集</h1>
-    '
-    <div class="material-list">
-      <!-- <div class="material-item" v-for="(item, idx) in productList" :key="idx"> -->
-      <!-- <div class="material-item-head" :class="[`type${idx + 1}`]">
+    <div v-if="isLogin">
+      <h1 class="material-title">莎头小美好</h1>
+      <littileGood />
+      <h1 class="material-title">2017-2023莎头混双之路</h1>
+      <div class="material-dg" @click="onCLick">
+        <img src="../../assets/img/dg.jpg" />
+      </div>
+    </div>
+    <div v-else>
+      <h1 class="material-title">莎头混双合集</h1>
+      '
+      <div class="material-list">
+        <!-- <div class="material-item" v-for="(item, idx) in productList" :key="idx"> -->
+        <!-- <div class="material-item-head" :class="[`type${idx + 1}`]">
         <div class="material-item-type">
           <div class="material-item-type-name">{{ item.name }}</div>
           <div
@@ -253,8 +282,8 @@
         </div>
       </div> -->
 
-      <div class="material-item-list">
-        <!-- <div
+        <div class="material-item-list">
+          <!-- <div
             class="material-item-list-empty"
             v-if="item.proPartVoList.length == 0"
           >
@@ -268,71 +297,77 @@
 
             <div class="material-item-list-empty-text">莎头网络差异无显示</div>
           </div> -->
-        <div class="material-item-list-margin">
-          <div
-            class="material-item-list-item"
-            v-for="productItem in stdeatil"
-            :key="productItem.id"
-            @click.stop="handelvedioPlay(productItem)"
-            @mouseleave.stop="clearVideoFn(productItem)"
-            :class="{ vedioheight: productItem.isPlay }"
-          >
+          <div class="material-item-list-margin">
             <div
-              class="material-item-list-item-label"
-              v-if="productItem.startRateDesc"
+              class="material-item-list-item"
+              v-for="productItem in stdeatil"
+              :key="productItem.id"
+              @click.stop="handelvedioPlay(productItem)"
+              @mouseleave.stop="clearVideoFn(productItem)"
+              :class="{ vedioheight: productItem.isPlay }"
             >
-              {{ productItem.startRateDesc }}
-            </div>
-            <!-- 展示图片 -->
-            <div class="material-item-list-item-img" v-if="!productItem.isPlay">
-              <div class="material-item-list-item-img-detail">
-                <div class="bofangicon" @click="handelvedioPlay(productItem)">
-                  <el-icon><VideoPlay /></el-icon>
-                </div>
+              <div
+                class="material-item-list-item-label"
+                v-if="productItem.startRateDesc"
+              >
+                {{ productItem.startRateDesc }}
               </div>
-              <img
-                :src="productItem.image"
-                alt=""
-                style="width: 100%; height: 100%"
-              />
-            </div>
-            <!-- 播放音频采访 -->
-            <div class="material-item-list-item-vedio" v-else>
-              <!-- <div class="backicon1" @click.stop="handelvedioback(productItem)">
+              <!-- 展示图片 -->
+              <div
+                class="material-item-list-item-img"
+                v-if="!productItem.isPlay"
+              >
+                <div class="material-item-list-item-img-detail">
+                  <div class="bofangicon" @click="handelvedioPlay(productItem)">
+                    <el-icon><VideoPlay /></el-icon>
+                  </div>
+                </div>
+                <img
+                  :src="productItem.image"
+                  alt=""
+                  style="width: 100%; height: 100%"
+                />
+              </div>
+              <!-- 播放音频采访 -->
+              <div class="material-item-list-item-vedio" v-else>
+                <!-- <div class="backicon1" @click.stop="handelvedioback(productItem)">
                 <el-icon><DArrowLeft /></el-icon
                 ><span
                   style="font-size: 12px; vertical-align: 4px; margin-left: 4px"
                   >退出视频</span
                 >
               </div> -->
-              <VideoSource
-                :videoSource="productItem.video"
-                heightValue="156"
-                ref="playRef"
-                style="width: 100%"
-              />
-              <!-- <div @click="handelPause" class="bofangicon">
+                <VideoSource
+                  :videoSource="productItem.video"
+                  heightValue="156"
+                  ref="playRef"
+                  style="width: 100%"
+                />
+                <!-- <div @click="handelPause" class="bofangicon">
             <el-icon><VideoPause /></el-icon>
           </div>
           <div @click="handelPlay">
             <el-icon><VideoPlay /></el-icon>
           </div> -->
-            </div>
-            <div class="material-item-list-item-name">
-              {{ productItem.name }}
-            </div>
+              </div>
+              <div class="material-item-list-item-name">
+                {{ productItem.name }}
+              </div>
 
-            <div class="material-item-list-item-footer">
-              <!-- <div class="material-item-list-item-footer-icon"></div> -->
-              <div class="material-item-list-item-footer-merchant">
-                {{ productItem.enterpriseName }}
+              <div class="material-item-list-item-footer">
+                <!-- <div class="material-item-list-item-footer-icon"></div> -->
+                <div class="material-item-list-item-footer-merchant">
+                  {{ productItem.enterpriseName }}
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- </div> -->
       </div>
-      <!-- </div> -->
     </div>
+
+    <Progress ref="progressRef" />
   </div>
 </template>
 
@@ -354,8 +389,17 @@ import nanyangVedio from "@/assets/img/nanyang.mp4";
 import xiushidunVedio from "@/assets/img/xsd.mp4";
 import dpVedio from "@/assets/img/dp.mp4";
 import hangzhouVedio from "@/assets/img/hangzhou.mp4";
-
+import { ElMessage } from "element-plus";
+import EuropeMap from "../../components/components/europeMap.vue";
+import littileGood from "./components/littileGood.vue";
+import Progress from "./components/progress.vue";
 const userStore = useUserStore();
+const { setToken } = userStore;
+
+const progressRef = ref(null);
+const onCLick = () => {
+  progressRef.value && progressRef.value.onOpen();
+};
 const { isLogin, userInfo } = storeToRefs(userStore);
 const video = ref("@/assets/img/balijiian.mp4");
 const isBanner = ref(false);
@@ -434,9 +478,27 @@ const getbannerVideo = () => {
 const getAvatarImageUrl = () => {
   return new URL(`@/assets/img/user_default.png`, import.meta.url).href;
 };
+const getAvatarUrl = () => {
+  return new URL(`@/assets/img/loginbg3.jpg`, import.meta.url).href;
+};
 
+const logout = () => {
+  setToken("");
+  ElMessage({
+    message: "退出登录",
+    type: "success"
+  });
+  router.push({
+    path: "/"
+  });
+};
 const router = useRouter();
 
+const login = () => {
+  router.push({
+    path: "/login"
+  });
+};
 // const toRecord = () => {
 //   router.push({
 //     path: "/shop/record"
@@ -638,7 +700,13 @@ const productList = ref([]);
       height: 68px;
       margin-top: 16px;
     }
-
+    &-logout {
+      font-size: 14px;
+      color: #ccc;
+      margin-top: 12px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
     &-name {
       margin-top: 8px;
       font-size: 16px;
@@ -658,7 +726,7 @@ const productList = ref([]);
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 48px;
+    height: 23px;
     &-login {
       display: flex;
       justify-content: center;
@@ -779,7 +847,14 @@ const productList = ref([]);
   margin-top: 40px;
   margin-bottom: 20px;
 }
-
+.material-dg {
+  width: $min-width;
+  margin: 0 auto;
+  img {
+    width: 100%;
+    height: 500px;
+  }
+}
 .material-list {
   width: calc(100% + 12px);
   margin-left: -6px;
